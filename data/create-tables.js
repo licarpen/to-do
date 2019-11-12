@@ -20,7 +20,7 @@ async function run() {
 
         console.log('create tables complete');
     }
-    catch(err) {
+    catch (err) {
         // problem? let's see the error...
         console.log(err);
     }

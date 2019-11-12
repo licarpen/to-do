@@ -18,14 +18,25 @@ export function getTodos() {
 }
 
 export function addTodo(todo) {  
-    
+    const url = `${URL}/todos`;
+    return fetchWithError(url, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(todo)
+    });
 }
 
-export function updateTodo(todo) {  
-    
+export function updateTodo(id) { 
+    const url = `${URL}/todos/${id}`;
+    return fetchWithError(url, {
+        method: 'PUT'
+    });
 }
 
-export function removeTodo(todoId) {  
-    
+export function removeTodo(id) {  
+    const url = `${URL}/todos/${id}`;
+    return fetchWithError(url, {
+        method: 'DELETE'
+    });
 }
 

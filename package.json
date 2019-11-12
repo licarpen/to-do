@@ -29,5 +29,16 @@
   "devDependencies": {
     "eslint": "^6.6.0",
     "nodemon": "^1.19.4"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/licarpen/to-do.git"
+  },
+  "bugs": {
+    "url": "https://github.com/licarpen/to-do/issues"
+  },
+  "homepage": "https://github.com/licarpen/to-do#readme"
 }

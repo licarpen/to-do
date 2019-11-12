@@ -17,6 +17,10 @@ class TodoApp extends Component {
         const loading = new Loading({ loading: true });
         dom.appendChild(loading.renderDOM());
 
+        const addTodoForm = new AddTodo({
+            
+        })
+
         // initial todo load:
         try {
             
