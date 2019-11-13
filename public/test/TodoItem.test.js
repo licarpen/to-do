@@ -1,4 +1,4 @@
-import TodoItem from '../todo-list/TodoItem.js';
+import TodoItem from '../todo/TodoItem.js';
 const test = QUnit.test;
 
 QUnit.module('Render Todo Item');
@@ -12,7 +12,12 @@ test('renders html from data', assert => {
     };
 
     const expected = /*html*/`
-        
+    <li class="todo-item">
+    <button class="complete">${todo.complete ? '' : 'complete'}</button>
+
+<p class=${todo.complete ? 'task-complete' : 'task'}>${todo.task}</p>
+    <button class="remove">☒</button>
+    </li>
     `;
 
     // act
