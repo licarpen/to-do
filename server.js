@@ -52,7 +52,7 @@ app.post('/api/todos', async(req, res) => {
         res.status(200).json(result.rows[0]);
     }
     catch (err) {
-        console.log(err);
+        console.log(err + ': could not load todos into table');
         res.status(500).json({
             error: err.message || err
         });
@@ -62,7 +62,6 @@ app.post('/api/todos', async(req, res) => {
 app.put('/api/todos/:id', async(req, res) => {
     const id = req.params.id;
    // const todo = req.body;
-   console.log(id + ' is the id');
 
     try {
         const result = await client.query(`

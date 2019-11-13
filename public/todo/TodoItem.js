@@ -19,9 +19,9 @@ class TodoItem extends Component {
 
         return /*html*/`
             <li class="todo-item">
-                <button class="complete">Complete</button>
-                <p class="task">${todo.task}</p>
-                <button class="remove">Remove</button>
+                <button class="complete">${todo.complete ? '' : 'complete'}</button>
+                <p class=${todo.complete ? 'task-complete' : 'task'}>${todo.task}</p>
+                <button class="remove">☒</button>
             </li>
         `;
     }

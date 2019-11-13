@@ -1,10 +1,22 @@
 li{
     display: flex;
-    justify-items: flex-start;
+    justify-content: space-between;
     margin: 15px;
+    background: white;
+    border: solid 2px black;
+    width: 300px;
 }
 
 .task{
     margin: 10px;
+}
+
+.task-complete{
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+button{
+    background: white;
 }
 
