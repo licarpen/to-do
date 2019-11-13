@@ -8,6 +8,7 @@ async function fetchWithError(url, options) {
         return data;
     }
     else {
+        //console.log(error);
         throw data.error;
     }
 }
@@ -26,17 +27,22 @@ export function addTodo(todo) {
     });
 }
 
-export function updateTodo(id) { 
-    const url = `${URL}/todos/${id}`;
+export function updateTodo(todo) { 
+    const url = `${URL}/todos/${todo.id}`;
     return fetchWithError(url, {
         method: 'PUT'
     });
 }
 
 export function removeTodo(id) {  
+    console.log('in the removeTodo function');
+ 
     const url = `${URL}/todos/${id}`;
-    return fetchWithError(url, {
+    console.log(url);  
+    const result = fetchWithError(url, {
         method: 'DELETE'
     });
+    console.log(result);
+    return result;
 }
 

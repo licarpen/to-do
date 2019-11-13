@@ -1,0 +1,10 @@
+li{
+    display: flex;
+    justify-items: flex-start;
+    margin: 15px;
+}
+
+.task{
+    margin: 10px;
+}
+

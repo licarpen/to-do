@@ -62,18 +62,20 @@ app.post('/api/todos', async(req, res) => {
 app.put('/api/todos/:id', async(req, res) => {
     const id = req.params.id;
    // const todo = req.body;
+   console.log(id + ' is the id');
 
     try {
         const result = await client.query(`
             UPDATE todos
-            SET todos.complete = true
-            WHERE todos.id = $1
+            SET complete = true
+            WHERE id = $1
+            RETURNING * 
         `, [id]);
      
         res.status(200).json(result.rows[0]);
     }
     catch (err) {
-        console.log(err);
+        console.log(err + ': could not update to complete');
         res.status(500).json({
             error: err.message || err
         });
@@ -87,7 +89,8 @@ app.delete('/api/todos/:id', async(req, res) => {
     try {
         const result = await client.query(`
             DELETE FROM todos
-            WHERE todos.id = $1
+            WHERE id = $1
+            RETURNING *;
         `, [id]);
         
         res.status(200).json(result.rows[0]);

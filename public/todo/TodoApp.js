@@ -18,20 +18,78 @@ class TodoApp extends Component {
         dom.appendChild(loading.renderDOM());
 
         const addTodoForm = new AddTodo({
-            
-        })
+            onAdd: async todo => {
+                loading.update({ loading: true });
+                error.textContent = '';
+                try {
+                    const saved = await addTodo(todo);
+                    const todos = this.state.todos;
+                    todos.push(saved);
+                    todoList.update({ todos });
+                }
+                catch (err){
+                    error.textContent = err;
+                    throw err;
 
-        // initial todo load:
+                }
+                finally {
+                    loading.update({ loading: false });
+                }
+            }
+        });
+        main.appendChild(addTodoForm.renderDOM());
+
+        const todoList = new TodoList({
+            todos: [],
+            onUpdate: async todo => {
+                loading.update({ loading: true });
+                error.textContent = '';        
+                try {
+                    const updated = await updateTodo(todo);
+                    const todos = this.state.todos;
+                    const index = todos.indexOf(todo);
+                    todos.splice(index, 1, updated);
+                    todoList.update({ todos });
+                }
+                catch (err) {
+                    console.log(err + ': updated todoList unsuccessful');
+                }
+                finally {
+                    loading.update({ loading: false });
+                }
+            },
+            onRemove: async todo => {
+                loading.update({ loading: true });
+                error.textContent = '';
+                try {
+                    await removeTodo(todo.id);
+                    const todos = this.state.todos;
+                    const index = todos.indexOf(todo);
+                    todos.splice(index, 1);
+                    console.log(todos);
+                    todoList.update({ todos });
+                }
+                catch (err){
+                    console.log(err, ': remove update not successful');
+                }
+                finally {
+                    loading.update({ loading: false });
+                }
+            }
+        });
+        main.appendChild(todoList.renderDOM());
+
         try {
-            
+            const todos = await getTodos();
+            this.state.todos = todos;
+            todoList.update({ todos });
         }
-        catch (err) {
-            // display error...
+        catch (err){
+            console.log(err);
         }
         finally {
             loading.update({ loading: false });
         }
-
     }
 
     renderHTML() {

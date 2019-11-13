@@ -20,8 +20,9 @@ class TodoItem extends Component {
         return /*html*/`
             <li class="todo-item">
                 <button class="complete">Complete</button>
-                <p>${todo.task}</p>
+                <p class="task">${todo.task}</p>
                 <button class="remove">Remove</button>
+            </li>
         `;
     }
 }
