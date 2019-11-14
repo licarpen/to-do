@@ -16,7 +16,7 @@ async function run() {
                 email VARCHAR(512) NOT NULL,
                 hash VARCHAR(512) NOT NULL,
                 display_name VARCHAR(512) NOT NULL
-            )
+            );
             
             CREATE TABLE todos (
                 id SERIAL PRIMARY KEY NOT NULL,
