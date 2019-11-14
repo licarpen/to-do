@@ -51,11 +51,13 @@ app.use('/api', ensureAuth);
 
 // API Routes
 app.get('/api/todos', async(req, res) => {
+    const userId = req.userId;
 
     try {
         const result = await client.query(`
-            SELECT * FROM todos;
-        `);
+            SELECT * FROM todos
+            WHERE user_id = $1;
+        `, [userId]);
 
         res.status(200).json(result.rows);
     }
