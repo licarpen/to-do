@@ -1,7 +1,7 @@
 const URL = '/api';
 
 const token = localStorage.getItem('TOKEN');
-// Redirect if not on home page
+// Redirect if no token and not on home page
 if (!token && !(location.pathname === '/' || location.pathname === '/index.html')) {
     const searchParams = new URLSearchParams();
     searchParams.set('redirect', location.pathname);
