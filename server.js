@@ -9,6 +9,31 @@ const client = require('./lib/client');
 // Initiate database connection
 client.connect();
 
+// Authorization Setup
+const ensureAuth = require('./lib/auth/ensure-auth');
+const createAuthRoutes = require('./lib/auth/create-auth-routes');
+const authRoutes = createAuthRoutes({
+    selectUser(email) {
+        return client.query(`
+            SELECT id, email, hash, display_name as "displayName" 
+            FROM users
+            WHERE email = $1;
+        `,
+        [email]
+        ).then(result => result.rows[0]);
+    },
+    insertUser(user, hash) {
+        console.log(user);
+        return client.query(`
+            INSERT into users (email, hash, display_name)
+            VALUES ($1, $2, $3)
+            RETURNING id, email, display_name as "displayName";
+        `,
+        [user.email, hash, user.displayName]
+        ).then(result => result.rows[0]);
+    }
+});
+
 // Application Setup
 const app = express();
 const PORT = process.env.PORT;
@@ -17,9 +42,14 @@ app.use(cors()); // enable CORS request
 app.use(express.static('public')); // server files from /public folder
 app.use(express.json()); // enable reading incoming json data
 
-// API Routes
+// Authentication Route
+app.use('/api/auth', authRoutes);
 
-// *** TODOS ***
+// Require auth token for all /api routes
+app.use('/api', ensureAuth);
+
+
+// API Routes
 app.get('/api/todos', async(req, res) => {
 
     try {
