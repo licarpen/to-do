@@ -27,7 +27,7 @@ class AddTodo extends Component {
 
     renderHTML() {
         return /*html*/`
-            <form>
+            <form class='add'>
                 <input name="task" type="text" placeholder="New task to complete" required>
                 <button id='add'>Add</button>
             </form>

@@ -94,7 +94,7 @@ class TodoApp extends Component {
 
     renderHTML() {
         return /*html*/`
-            <div>
+            <div class='todo'>
                 <!-- header goes here -->
                 <!-- show errors: -->
                 <p class="error"></p>

@@ -9,6 +9,11 @@ form p {
     margin: 10px 0;
 }
 
+button {
+    display: block;
+    margin: auto;
+}
+
 main p.errors, .user-display {
     margin-top: 20px;
     text-align: center;
