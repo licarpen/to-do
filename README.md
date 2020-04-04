@@ -17,10 +17,10 @@ This full stack application allows users to add, edit, and delete items from a t
 ## App Features
 
 * Secure user authentication with signup/login with hashed password
-* User can add todo items to list of todos
-* List of user's todos is displayed
-* Todos can be toggled to/from complete/incomplete
-* Todo can be removed by a user
+* User can add to do items to list of to dos
+* List of user's to dos is displayed
+* To dos can be toggled to/from complete/incomplete
+* To do can be removed by a user
 
 ## Custom Components
 
