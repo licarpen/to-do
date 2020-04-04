@@ -1,7 +1,7 @@
 {
   "name": "08-fsjs-server",
   "version": "1.0.0",
-  "description": "Fullstack My Todo App",
+  "description": "Fullstack To Do App",
   "main": "server.js",
   "scripts": {
     "lint": "eslint .",
